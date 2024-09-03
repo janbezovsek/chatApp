@@ -2,11 +2,14 @@ const express = require('express')
 const { chats } = require('./data/data')
 const app = express()
 const dbConnect = require("./configuration/db")
+const { notFound, errorHandler } = require('./middleware/errorMiddleware')
 const helmet = require("helmet")
 const dotenv = require('dotenv')
 dotenv.config()
-const port = process.env.PORT || 5000
 const cors = require('cors')
+const userRoutes = require("./routes/userRoutes")
+const port = process.env.PORT || 5000
+
 
 // For parsing application/json
 app.use(express.json())
@@ -44,15 +47,12 @@ app.get('/', (req, res) =>{
     res.send("API is running")
 })
 
-app.get('/api/chat', (req, res) =>{
-    
-    res.send(chats)
-})
+app.use('/api/user',userRoutes)
 
-app.get('/api/chat/:id', (req, res) =>{
-    const singleChat = chats.find((chat) => chat._id === req.params.id)
-    res.send(singleChat)
-})
+
+//error handlers
+app.use(notFound)
+app.use(errorHandler)
 
 app.listen( port , () => console.log(`Server is running on port ${ port } `) 
 )
