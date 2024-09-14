@@ -8,6 +8,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 const cors = require('cors')
 const userRoutes = require("./routes/userRoutes")
+const chatRoutes = require("./routes/chatRoutes")
 const port = process.env.PORT || 5000
 
 
@@ -47,7 +48,11 @@ app.get('/', (req, res) =>{
     res.send("API is running")
 })
 
+//API endpoints for users
 app.use('/api/user',userRoutes)
+
+//API endpoints for chats
+app.use("/api/chat", chatRoutes)
 
 
 //error handlers

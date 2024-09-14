@@ -73,7 +73,7 @@ const authUser = asyncHandler(async (req,res) => {
 })
 
 
-
+//controller for searching users(except the one who is searching)
 const allUsers = asyncHandler(async (req, res) => {
     const keyword = req.query.search ? {
         $or: [
