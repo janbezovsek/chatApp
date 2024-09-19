@@ -13,6 +13,7 @@ const accessChat = asyncHandler(async(req, res) => {
         return res.sendStatus(400)
     }
 
+    //creating chat and populating it with two users without password
     var isChat = await Chat.find({
         isGroupChat: false,
         $and: [

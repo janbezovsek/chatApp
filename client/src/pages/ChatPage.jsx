@@ -1,23 +1,15 @@
 import {} from 'react'
-import axios from 'axios'
+import { Box } from "@chakra-ui/layout"
+import { ChatState } from "../Context/ChatProvider"
+import SideDrawer from "../components/Authentication/miscellaneous/SideDrawer"
+import MyChats from '../components/Authentication/miscellaneous/MyChats'
+import ChatBox from '../components/Authentication/miscellaneous/ChatBox'
+
 
 const ChatPage = () => {
 
+  const { user } = ChatState()
 
-
-let data2 = []
-
-
-  axios.get("http://localhost:5000/api/chat")
-    .then((data) => {
-      data2 = data.data
-      
-      console.log(data2)
-      
-  })
-  .catch((error) => {
-      console.log(error)
-  })
 
   
 
@@ -25,9 +17,17 @@ let data2 = []
 
   return (
     
-    <>
-    
-    </>
+    <div style={{ width: "100%" }}>
+      {user && <SideDrawer/>} 
+      <Box display="flex" justifyContent="space-between" w="100%" h="91.5vh" p="10px">
+        {user && <MyChats/>} 
+        {user && <ChatBox/>} 
+      </Box>
+
+
+
+
+    </div>
     
   )
 }

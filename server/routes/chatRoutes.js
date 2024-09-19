@@ -4,7 +4,7 @@ const { protect } = require('../middleware/authMiddleware')
 
 const router = express.Router()
 
-//API endpoint for accessing chat
+//API endpoint for accessing chat (one on one chat)
 router.route("/").post(protect, accessChat)
 
 //API endpoint for fetching chats
