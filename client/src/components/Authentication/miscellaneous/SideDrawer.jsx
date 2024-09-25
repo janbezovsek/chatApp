@@ -2,6 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { Box, Text } from "@chakra-ui/layout"
+import { Spinner } from "@chakra-ui/spinner"
 import { Button } from "@chakra-ui/button"
 import { Tooltip, Menu, MenuButton, MenuList, MenuItem, MenuDivider, useToast} from "@chakra-ui/react"
 import {
@@ -19,6 +20,8 @@ import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons"
 import { Avatar } from "@chakra-ui/avatar"
 import { ChatState } from "../../../Context/ChatProvider"
 import ProfileModal from './ProfileModal'
+import ChatLoading from '../../ChatLoading';
+import UserListItem from '../../UserAvatar/UserListItem'
 
 
 
@@ -39,7 +42,7 @@ const SideDrawer = () => {
 
 
   //getting info from user object
-const { user } = ChatState()
+const { user, setSelectedChat, chats, setChats } = ChatState()
 
 //loging out to login page
 const logoutHandler = () => {
@@ -90,7 +93,36 @@ const handleSearch = async () => {
 }
 
 
+const accessChat = async (userId) => {
+  try {
+    setLoading(true)
 
+    const config= {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      }
+    }
+
+    const { data } = await axios.post(`http://localhost:5000/api/chat`, { userId }, config)
+  
+    if(!chats.find((c) => c._id === data._id)) setChats([data, ...chats])
+
+
+    setSelectedChat(data)
+    setLoadingChat(false)
+    onClose()
+  } catch (error) {
+    toast({
+      title: "Error fetching the chat",
+      description: error.message,
+      status: "error",
+      duration: 5000,
+      isClosable : true,
+      position: "bottom-left",
+    })
+  }
+}
 
 
 
@@ -153,7 +185,7 @@ const handleSearch = async () => {
           <DrawerBody>
           <Box display="flex" paddingBottom={2}>
             <Input 
-              placeHolder="Search by name or email"
+              placeholder="Search by name or email"
               mr={2}
               value={search}
               onChange={(e)=> setSearch(e.target.value)}
@@ -163,7 +195,17 @@ const handleSearch = async () => {
               Go
             </Button>
           </Box>
-          
+            {loading ? <ChatLoading /> : 
+             (
+              searchResult.map(user => (
+                <UserListItem key={user._id} 
+                user={user}
+                handleFunction={()=>accessChat(user._id)}
+              />
+              ))
+             )
+            }
+            {loadingChat && <Spinner ml="auto" display="flex" />}
         </DrawerBody>
         </DrawerContent>
       </Drawer>
