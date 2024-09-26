@@ -36,7 +36,7 @@ return (
         <ModalOverlay />
         <ModalContent h="400px">
           <ModalHeader
-          fonstSize="40px"
+          fontSize="40px"
           fontFamily="Work sans"
           display = "flex"
           justifyContent="center"

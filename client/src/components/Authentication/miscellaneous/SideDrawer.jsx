@@ -8,11 +8,9 @@ import { Tooltip, Menu, MenuButton, MenuList, MenuItem, MenuDivider, useToast} f
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton,
   Input,
 } from '@chakra-ui/react'
 import { useDisclosure } from '@chakra-ui/hooks';

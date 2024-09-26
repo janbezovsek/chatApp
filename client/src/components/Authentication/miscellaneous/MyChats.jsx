@@ -11,7 +11,7 @@ import GroupChatModal from '../miscellaneous/GroupChatModal'
 
 
 
-const MyChats = () => {
+const MyChats = ({ fetchAgain }) => {
 
   //Context props(values from ChatProvider context)
 const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState()
@@ -50,7 +50,7 @@ const fetchChats = async () => {
 useEffect(() => {
   setLoggedUser(JSON.parse(localStorage.getItem("userInfo")))
   fetchChats()
-}, [])
+}, [fetchAgain])
 
 
 
