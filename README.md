@@ -28,27 +28,4 @@ Start the client (localhost:3000)
 ## App explained
 ---
 
-![Alt text](images/chat2.jpg)
-
-
-![Alt text](images/chat9.jpg)
-
-
-![Alt text](images/chat3.jpg)
-
-
-![Alt text](images/chat6.jpg)
-
-
-![Alt text](images/chat4.jpg)
-
-
-![Alt text](images/chat5.jpg)
-
-
-![Alt text](images/chat7.jpg)
-
-
-![Alt text](images/chat8.jpg)
-
 
