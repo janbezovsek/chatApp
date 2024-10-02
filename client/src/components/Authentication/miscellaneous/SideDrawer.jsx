@@ -20,7 +20,7 @@ import { ChatState } from "../../../Context/ChatProvider"
 import ProfileModal from './ProfileModal'
 import ChatLoading from '../../ChatLoading';
 import UserListItem from '../../UserAvatar/UserListItem'
-
+import { getSender } from "../../../config/ChatLogics"
 
 
 const SideDrawer = () => {
@@ -40,7 +40,7 @@ const SideDrawer = () => {
 
 
   //getting info from user object
-const { user, setSelectedChat, chats, setChats } = ChatState()
+const { user, setSelectedChat, chats, setChats, notification, setNotification } = ChatState()
 
 //loging out to login page
 const logoutHandler = () => {
@@ -157,15 +157,32 @@ const accessChat = async (userId) => {
         <div>
           <Menu>
             <MenuButton p={1}>
-              <BellIcon fontSize="2xl" m={1}/>
+              <BellIcon fontSize="2xl" m={1} />
             </MenuButton>
+            <MenuList>
+              {!notification.length && "No new messages"}
+
+              {notification.map((notif) => (
+                <MenuItem
+                  key={notif._id}
+                  onClick={() => {
+                    setSelectedChat(notif.chat);
+                    setNotification(notification.filter((n) => n !== notif));
+                  }}
+                >
+                  {notif.chat.isGroupChat
+                    ? `New Message in ${notif.chat.chatName}`
+                    : `New Message from ${getSender(user, notif.chat.users)}`}
+                </MenuItem>
+              ))}
+            </MenuList>
           </Menu>
           <Menu>
             <MenuButton as={Button} rightIcon={<ChevronDownIcon/>}>
               <Avatar size="sm" cursor="pointer" name={user.name}>
               </Avatar>
             </MenuButton>
-            <MenuList>
+            <MenuList pl={2}>
               <ProfileModal user={user}>
                 <MenuItem>My Profile</MenuItem>
               </ProfileModal>

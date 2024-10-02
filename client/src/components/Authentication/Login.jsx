@@ -13,10 +13,10 @@ import { useNavigate } from 'react-router-dom'
 const Login = () => {
 
     //state for email
-    const [email, setEmail] = useState()
+    const [email, setEmail] = useState("")
 
     //state for password
-    const [password, setPassword] = useState()
+    const [password, setPassword] = useState("")
 
 
     const [show, setShow] = useState(false)
