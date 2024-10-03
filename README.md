@@ -48,6 +48,7 @@ users that we have created, view our profile, logout and create new chats or cha
 We also have a notification bell for new messages.
 
 
+### Messages
 ![chat6](https://github.com/user-attachments/assets/8b5685cc-76d2-4b50-a3e3-4e53223ed27f)
 
 
@@ -55,21 +56,26 @@ If we open another window in the browser (new anonymous tab) and login with diff
 we can test our app and see real time communication without refreshing the page.
 
 
+### Search users
 ![chat3](https://github.com/user-attachments/assets/5a545659-53af-4231-bead-dfd63b3d2643)
 
 
+### Group chat
 ![chat4](https://github.com/user-attachments/assets/41d69f40-8447-4806-b6e1-b7e7c3ad39d8)
 
 
+### Renaming chat, removing users, leaving group
 ![chat5](https://github.com/user-attachments/assets/05100a2f-511d-45aa-b9e2-6eb4177e99c8)
 
 
+###  Responsive design
 ![chat7](https://github.com/user-attachments/assets/cfab8ac8-1e93-4d78-8307-f0701d7fc489)
 
 
 We have also implemented responsive design making it available for all sizes.
 
 
+### Saved data in our database
 ![chat8](https://github.com/user-attachments/assets/f49647e5-3000-4484-81b2-6d47a455036f)
 
 
