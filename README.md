@@ -23,6 +23,11 @@ Start the client (localhost:3000)
 - open new terminal
 - cd client/npm run dev
 
+Variables that need to be adjusted according to users (.env)
+- PORT
+- DB_URL
+- JWT_SECRET
+
 ---
 
 ## App explained
@@ -79,4 +84,4 @@ We have also implemented responsive design making it available for all sizes.
 ![chat8](https://github.com/user-attachments/assets/f49647e5-3000-4484-81b2-6d47a455036f)
 
 
-
+We have encrypted our passwords as we can see.
